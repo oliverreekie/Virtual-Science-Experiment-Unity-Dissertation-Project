@@ -9,8 +9,6 @@ public class HoldPointScript : MonoBehaviour
 
     private string objHolding = "";
 
-    private string buildState = "Nothing";
-
     private string lookingAt = "";
 
     public void setIsHolding(bool b)
@@ -33,7 +31,7 @@ public class HoldPointScript : MonoBehaviour
         return objHolding;
     }
 
-    public void setBuildState(string s)
+    /*public void setBuildState(string s)
     {
         buildState = s;
     }
@@ -41,7 +39,7 @@ public class HoldPointScript : MonoBehaviour
     public string getBuildState()
     {
         return buildState;
-    }
+    }*/
     public void setLookingAt(string s)
     {
         lookingAt = s;

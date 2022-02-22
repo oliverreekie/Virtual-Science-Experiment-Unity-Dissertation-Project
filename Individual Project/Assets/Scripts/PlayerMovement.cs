@@ -11,7 +11,6 @@ public class PlayerMovement : MonoBehaviour
 
     public GameObject newObj;
 
-    // Update is called once per frame
     void Update()
     {
         float x = Input.GetAxis("Horizontal");
