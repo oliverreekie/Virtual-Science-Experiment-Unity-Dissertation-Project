@@ -14,6 +14,8 @@ public class BuildState : MonoBehaviour
 
     public GameObject clampStandLGOFFRulerTimer;
 
+    public GameObject buildCheck;
+
     public void Update()
     {
         if(buildState == "ClampStand, LGOff")
@@ -31,6 +33,7 @@ public class BuildState : MonoBehaviour
         if (buildState == "Ruler, Clamp, LGOFF, Timer, Wires")
         {
             Destroy(clampStandLGOFFRulerTimer);
+            Destroy(buildCheck);
         }
     }
 

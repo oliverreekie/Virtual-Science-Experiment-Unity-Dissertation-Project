@@ -30,7 +30,7 @@ public class ToHoldRaycast : MonoBehaviour
                     }
                     
                 }
-                else if (hit.collider.name != "BuildObjCheck")
+                else if (hit.collider.name != "BuildObjCheck" && hit.collider.name != "Ruler, Clamp, LGON, Timer, Wires")
                 {
                     uiText.text = ("Pick up");
                     holdScript.setLookingAt("Object");

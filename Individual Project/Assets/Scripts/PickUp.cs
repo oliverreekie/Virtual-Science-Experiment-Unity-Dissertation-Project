@@ -61,7 +61,7 @@ public class PickUp : MonoBehaviour
                 buildScript.setBuildState("Ruler, Clamp, LGOFF");
                 Destroy(gameObject);
 
-                toInstantiate.transform.position = new Vector3((float)-5.056, (float)2.25, (float)4.232);
+                toInstantiate.transform.position = new Vector3((float)-5.063, (float)2.207, (float)4.229);
                 
             }
             else if (buildScript.getBuildState() == "Ruler, Clamp, LGOFF" && holdScript.getObHolding() == "Timer")
