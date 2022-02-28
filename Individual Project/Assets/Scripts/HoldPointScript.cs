@@ -30,16 +30,6 @@ public class HoldPointScript : MonoBehaviour
     {
         return objHolding;
     }
-
-    /*public void setBuildState(string s)
-    {
-        buildState = s;
-    }
-
-    public string getBuildState()
-    {
-        return buildState;
-    }*/
     public void setLookingAt(string s)
     {
         lookingAt = s;

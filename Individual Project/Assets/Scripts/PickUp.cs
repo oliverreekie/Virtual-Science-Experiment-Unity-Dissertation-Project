@@ -12,6 +12,8 @@ public class PickUp : MonoBehaviour
 
     public GameObject toInstantiate;
 
+    public RulerCanvasController rulerController;
+
     private void OnMouseDown()
     {
         float dist = Vector3.Distance(GetComponent<Rigidbody>().position, GameObject.Find("HoldPoint").transform.position);
@@ -79,6 +81,10 @@ public class PickUp : MonoBehaviour
                 toInstantiate.transform.position = new Vector3((float)-5.06, (float)2.206, (float)4.224);
             }
         }
+        else if (holdScript.getLookingAt() == "Ruler, Clamp, LGON, Timer, Wires" && holdScript.getObHolding() == "Weighted Card")
+        {
+            rulerController.swapRulerState();
+        }
         else
         {
             this.transform.parent = null;
@@ -87,5 +93,13 @@ public class PickUp : MonoBehaviour
             holdScript.setIsHolding(false);
         }
 
+    }
+
+    public void droppingCardFromRuler()
+    {
+        this.transform.parent = null;
+        GetComponent<Rigidbody>().useGravity = true;
+
+        holdScript.setIsHolding(false);
     }
 }

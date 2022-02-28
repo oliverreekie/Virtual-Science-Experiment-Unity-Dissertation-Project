@@ -21,9 +21,9 @@ public class WiresScript : MonoBehaviour
         }
         else
         {
-            print(timer);
-            double toPrint = Math.Round((timer * 10), 2);
-            uiText.text = toPrint.ToString();
+            //print(timer);
+            double toPrint = Math.Round((timer * 10), 4);
+            uiText.text = toPrint.ToString("0.000");
         }
     }
 

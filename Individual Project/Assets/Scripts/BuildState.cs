@@ -16,6 +16,8 @@ public class BuildState : MonoBehaviour
 
     public GameObject buildCheck;
 
+    private bool rulerCanvasOpen = false;
+
     public void Update()
     {
         if(buildState == "ClampStand, LGOff")
@@ -45,5 +47,15 @@ public class BuildState : MonoBehaviour
     public string getBuildState()
     {
         return buildState;
+    }
+
+    public void setRulerCanvasOpen(bool b)
+    {
+        rulerCanvasOpen = b;
+    }
+
+    public bool getRulerCanvasOpen()
+    {
+        return rulerCanvasOpen;
     }
 }

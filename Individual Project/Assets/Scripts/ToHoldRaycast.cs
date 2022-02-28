@@ -9,6 +9,8 @@ public class ToHoldRaycast : MonoBehaviour
 
     public HoldPointScript holdScript;
 
+    public BuildState buildScript;
+
     void Update()
     {
             RaycastHit hit;
@@ -20,8 +22,24 @@ public class ToHoldRaycast : MonoBehaviour
                 {
                     if (hit.collider.name == "BuildObjCheck")
                     {
-                        uiText.text = "Build";
-                        holdScript.setLookingAt("Build");
+                        if( (buildScript.getBuildState() == "Nothing" && holdScript.getObHolding() == "ClampStand") ||
+                            (buildScript.getBuildState() == "ClampStand" && holdScript.getObHolding() == "LightGate_Off") ||
+                            (buildScript.getBuildState() == "ClampStand, LGOff" && holdScript.getObHolding() == "Ruler") ||
+                            (buildScript.getBuildState() == "Ruler, Clamp, LGOFF" && holdScript.getObHolding() == "Timer") ||
+                            (buildScript.getBuildState() == "Ruler, Clamp, LGOFF, Timer" && holdScript.getObHolding() == "Wires") )
+                        {
+                            uiText.text = "Build";
+                            holdScript.setLookingAt("Build");
+                        }
+
+                    }
+                    else if (hit.collider.name == "Ruler, Clamp, LGON, Timer, Wires")
+                    {
+                        if(holdScript.getObHolding() == "Weighted Card"){
+                            uiText.text = "Drop";
+                            holdScript.setLookingAt("Ruler, Clamp, LGON, Timer, Wires");
+                        }
+
                     }
                     else
                     {
