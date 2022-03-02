@@ -12,7 +12,6 @@ public class WiresScript : MonoBehaviour
 
     public TextMeshPro uiText;
 
-    // Update is called once per frame
     void Update()
     {
         if(running == true)

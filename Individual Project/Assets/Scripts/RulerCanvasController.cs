@@ -8,37 +8,64 @@ public class RulerCanvasController : MonoBehaviour
 
     private bool rulerActive;
 
-    public BuildState buildScript;
+    public GameObject notesCanvas;
+
+    private bool notesActive;
 
     void Start()
     {
         rulerCanvas.SetActive(false);
         rulerActive = false;
+
+        notesCanvas.SetActive(false);
+        notesActive = false;
     }
 
-    void Update()
+    private void Update()
     {
-        //rulerState();
-
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            swapNotesState();
+        }
     }
+
     public void swapRulerState()
     {
         if (rulerActive == false)
         {
             rulerCanvas.SetActive(true);
             rulerActive = true;
-            buildScript.setRulerCanvasOpen(true);
+            BuildState.Instance.setRulerCanvasOpen(true);
         }
         else
         {
             rulerCanvas.SetActive(false);
             rulerActive = false;
-            buildScript.setRulerCanvasOpen(false);
+            BuildState.Instance.setRulerCanvasOpen(false);
+        }
+    }
+    public void swapNotesState()
+    {
+        if (notesActive == false)
+        {
+            notesCanvas.SetActive(true);
+            notesActive = true;
+            BuildState.Instance.setNotesCanvasOpen(true);
+        }
+        else
+        {
+            notesCanvas.SetActive(false);
+            notesActive = false;
+            BuildState.Instance.setNotesCanvasOpen(false);
         }
     }
 
     public bool getRulerActive()
     {
         return rulerActive;
+    }
+    public bool getNotesActive()
+    {
+        return notesActive;
     }
 }

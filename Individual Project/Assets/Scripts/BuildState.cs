@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class BuildState : MonoBehaviour
 {
+    public static BuildState Instance { get; private set; }
+
     private string buildState = "Nothing";
 
     public GameObject clampStand;
@@ -18,19 +21,46 @@ public class BuildState : MonoBehaviour
 
     private bool rulerCanvasOpen = false;
 
+    private bool notesCanvasOpen = false;
+
+    public TextMeshProUGUI currentGoalLabel;
+
+    private void Awake()
+    {
+        if(Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     public void Update()
     {
-        if(buildState == "ClampStand, LGOff")
+        if(buildState == "Nothing")
+        {
+            currentGoalLabel.text = "Add the clampstand";
+        }
+        if (buildState == "ClampStand")
+        {
+            currentGoalLabel.text = "Add the light gate";
+        }
+        if (buildState == "ClampStand, LGOff")
         {
             Destroy(clampStand);
+            currentGoalLabel.text = "Add the ruler";
         }
         if (buildState == "Ruler, Clamp, LGOFF")
         {
             Destroy(clampStandLGOFF);
+            currentGoalLabel.text = "Add the timer";
         }
         if (buildState == "Ruler, Clamp, LGOFF, Timer")
         {
             Destroy(clampStandLGOFFRuler);
+            currentGoalLabel.text = "Add the wires";
         }
         if (buildState == "Ruler, Clamp, LGOFF, Timer, Wires")
         {
@@ -57,5 +87,14 @@ public class BuildState : MonoBehaviour
     public bool getRulerCanvasOpen()
     {
         return rulerCanvasOpen;
+    }
+    public void setNotesCanvasOpen(bool b)
+    {
+        notesCanvasOpen = b;
+    }
+
+    public bool getNotesCanvasOpen()
+    {
+        return notesCanvasOpen;
     }
 }

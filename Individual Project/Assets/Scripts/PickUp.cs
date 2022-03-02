@@ -6,10 +6,6 @@ public class PickUp : MonoBehaviour
 {
     public Transform toHoldPoint;
 
-    public HoldPointScript holdScript;
-
-    public BuildState buildScript;
-
     public GameObject toInstantiate;
 
     public RulerCanvasController rulerController;
@@ -28,60 +24,60 @@ public class PickUp : MonoBehaviour
                 this.transform.position = toHoldPoint.position;
                 this.transform.parent = GameObject.Find("HoldPoint").transform;
 
-                holdScript.setIsHolding(true);
-                holdScript.setObjHolding(GetComponent<Rigidbody>().name);
+                HoldPointScript.Instance.setIsHolding(true);
+                HoldPointScript.Instance.setObjHolding(GetComponent<Rigidbody>().name);
             }
         }
     }
 
     private void OnMouseUp()
     {
-        if (holdScript.getLookingAt() == "Build")
+        if (HoldPointScript.Instance.getLookingAt() == "Build")
         {
             this.transform.parent = null;
 
             GetComponent<Rigidbody>().useGravity = true;
 
-            holdScript.setIsHolding(false);
+            HoldPointScript.Instance.setIsHolding(false);
             
-            if (buildScript.getBuildState() == "Nothing" && holdScript.getObHolding() == "ClampStand")
+            if (BuildState.Instance.getBuildState() == "Nothing" && HoldPointScript.Instance.getObHolding() == "ClampStand")
             {
                 this.transform.position = new Vector3((float)-5.057, (float)2.206, (float)5.218);
                 this.transform.rotation = new Quaternion(0, -180, 0, 0);
-                buildScript.setBuildState("ClampStand");
+                BuildState.Instance.setBuildState("ClampStand");
             }
-            else if (buildScript.getBuildState() == "ClampStand" && holdScript.getObHolding() == "LightGate_Off")
+            else if (BuildState.Instance.getBuildState() == "ClampStand" && HoldPointScript.Instance.getObHolding() == "LightGate_Off")
             {
-                buildScript.setBuildState("ClampStand, LGOff");
+                BuildState.Instance.setBuildState("ClampStand, LGOff");
                 Destroy(gameObject);
 
                 toInstantiate.transform.position = new Vector3((float)-5.052, (float)2.208, (float)5.226);
                 
             }
-            else if (buildScript.getBuildState() == "ClampStand, LGOff" && holdScript.getObHolding() == "Ruler")
+            else if (BuildState.Instance.getBuildState() == "ClampStand, LGOff" && HoldPointScript.Instance.getObHolding() == "Ruler")
             {
-                buildScript.setBuildState("Ruler, Clamp, LGOFF");
+                BuildState.Instance.setBuildState("Ruler, Clamp, LGOFF");
                 Destroy(gameObject);
 
                 toInstantiate.transform.position = new Vector3((float)-5.063, (float)2.207, (float)4.229);
                 
             }
-            else if (buildScript.getBuildState() == "Ruler, Clamp, LGOFF" && holdScript.getObHolding() == "Timer")
+            else if (BuildState.Instance.getBuildState() == "Ruler, Clamp, LGOFF" && HoldPointScript.Instance.getObHolding() == "Timer")
             {
-                buildScript.setBuildState("Ruler, Clamp, LGOFF, Timer");
+                BuildState.Instance.setBuildState("Ruler, Clamp, LGOFF, Timer");
                 Destroy(gameObject);
 
                 toInstantiate.transform.position = new Vector3((float)-5.06, (float)2.206, (float)4.224); 
             }
-            else if (buildScript.getBuildState() == "Ruler, Clamp, LGOFF, Timer" && holdScript.getObHolding() == "Wires")
+            else if (BuildState.Instance.getBuildState() == "Ruler, Clamp, LGOFF, Timer" && HoldPointScript.Instance.getObHolding() == "Wires")
             {
-                buildScript.setBuildState("Ruler, Clamp, LGOFF, Timer, Wires");
+                BuildState.Instance.setBuildState("Ruler, Clamp, LGOFF, Timer, Wires");
                 Destroy(gameObject);
 
                 toInstantiate.transform.position = new Vector3((float)-5.06, (float)2.206, (float)4.224);
             }
         }
-        else if (holdScript.getLookingAt() == "Ruler, Clamp, LGON, Timer, Wires" && holdScript.getObHolding() == "Weighted Card")
+        else if (HoldPointScript.Instance.getLookingAt() == "Ruler, Clamp, LGON, Timer, Wires" && HoldPointScript.Instance.getObHolding() == "Weighted Card")
         {
             rulerController.swapRulerState();
         }
@@ -90,7 +86,7 @@ public class PickUp : MonoBehaviour
             this.transform.parent = null;
             GetComponent<Rigidbody>().useGravity = true;
 
-            holdScript.setIsHolding(false);
+            HoldPointScript.Instance.setIsHolding(false);
         }
 
     }
@@ -100,6 +96,6 @@ public class PickUp : MonoBehaviour
         this.transform.parent = null;
         GetComponent<Rigidbody>().useGravity = true;
 
-        holdScript.setIsHolding(false);
+        HoldPointScript.Instance.setIsHolding(false);
     }
 }

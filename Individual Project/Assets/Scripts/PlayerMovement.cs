@@ -4,16 +4,13 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-
     public CharacterController controller;
 
     public float speed = 0.1f;
 
-    public BuildState buildScript;
-
     void Update()
     {
-        if (buildScript.getRulerCanvasOpen() == false)
+        if (BuildState.Instance.getRulerCanvasOpen() == false && BuildState.Instance.getNotesCanvasOpen() == false)
         {
             float x = Input.GetAxis("Horizontal");
             float z = Input.GetAxis("Vertical");
