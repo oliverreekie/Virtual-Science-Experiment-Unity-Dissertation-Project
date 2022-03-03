@@ -6,13 +6,13 @@ public class MouseMovement : MonoBehaviour
 {
     public Transform playerBody;
 
-    public RulerCanvasController rulerController;
+    public CanvasController rulerController;
 
     float xRotation = 0f;
 
     void Update()
     {
-        if (rulerController.getRulerActive() == false)
+        if (rulerController.getRulerActive() == false && rulerController.getTableActive() == false)
         {
             float mouseX = Input.GetAxis("Mouse X") * 100f * Time.deltaTime;
             float mouseY = Input.GetAxis("Mouse Y") * 100f * Time.deltaTime;

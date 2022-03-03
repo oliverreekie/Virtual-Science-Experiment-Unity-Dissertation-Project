@@ -8,7 +8,7 @@ public class PickUp : MonoBehaviour
 
     public GameObject toInstantiate;
 
-    public RulerCanvasController rulerController;
+    public CanvasController rulerController;
 
     private void OnMouseDown()
     {

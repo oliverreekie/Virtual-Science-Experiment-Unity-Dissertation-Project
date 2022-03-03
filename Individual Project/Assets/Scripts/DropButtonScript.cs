@@ -9,7 +9,7 @@ public class DropButtonScript : MonoBehaviour
 
     public GameObject weightedCard;
 
-    public RulerCanvasController rulerController;
+    public CanvasController rulerController;
 
     public PickUp weightedCardPickUp;
 

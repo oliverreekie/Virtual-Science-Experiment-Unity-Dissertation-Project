@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+using System;
 
 public class GridScript : Graphic
 {
@@ -11,19 +13,35 @@ public class GridScript : Graphic
     float width;
     float height;
 
-    float widthOfLine = (float)4;
+    float widthOfLine = (float)2;
+
+    float totalWidth;
+    float totalHeight;
+
+    public TextMeshProUGUI rowText;
+    public TextMeshProUGUI columnText;
+
+    private void Update()
+    {
+        rows = Int32.Parse(rowText.text);
+        columns = Int32.Parse(columnText.text);
+        SetVerticesDirty();
+    }
 
     protected override void OnPopulateMesh(VertexHelper vh)
     {
+        //rows = Int32.Parse(rowText.text);
+        //print(Int32.Parse(rowText.text));
+
+        //rows = Int32.Parse(theSlider.value.ToString());
+
         vh.Clear();
 
-        float totalWidth = rectTransform.rect.width;
-        float totalHeight = rectTransform.rect.height;
+        totalWidth = rectTransform.rect.width;
+        totalHeight = rectTransform.rect.height;
 
         width = totalWidth / (float)columns;
         height = totalHeight / (float)rows;
-
-
 
         int counter = 0;
 
@@ -40,9 +58,8 @@ public class GridScript : Graphic
 
     void createSquare(int x, int y, int counter, VertexHelper vh)
     {
-
-        float xPos = width * x;
-        float yPos = height * y;
+        float xPos = (width * x) - (int)(totalWidth / 2);
+        float yPos = (height * y) - (int)(totalHeight / 2);
 
         UIVertex vertex = UIVertex.simpleVert;
         vertex.color = color;
@@ -67,10 +84,10 @@ public class GridScript : Graphic
         vertex.position = new Vector3(xPos + width, yPos + height);
         vh.AddVert(vertex);
 
-        vertex.position = new Vector3(xPos + width, yPos + height - widthOfLine);
+        vertex.position = new Vector3(xPos + width, yPos + (height - widthOfLine));
         vh.AddVert(vertex);
 
-        vertex.position = new Vector3(xPos, yPos + height - widthOfLine);
+        vertex.position = new Vector3(xPos, yPos + (height - widthOfLine));
         vh.AddVert(vertex);
 
         //Right Side
@@ -99,7 +116,7 @@ public class GridScript : Graphic
         vertex.position = new Vector3(xPos + width, yPos + widthOfLine);
         vh.AddVert(vertex);
 
-        int offset = counter * 8;
+        int offset = counter * 16;
 
         //Left Side
         vh.AddTriangle(offset + 0, offset + 1, offset + 2);

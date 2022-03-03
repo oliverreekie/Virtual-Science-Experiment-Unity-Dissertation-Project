@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RulerCanvasController : MonoBehaviour
+public class CanvasController : MonoBehaviour
 {
     public GameObject rulerCanvas;
 
@@ -12,6 +12,10 @@ public class RulerCanvasController : MonoBehaviour
 
     private bool notesActive;
 
+    public GameObject tableCanvas;
+
+    private bool tableActive;
+
     void Start()
     {
         rulerCanvas.SetActive(false);
@@ -19,6 +23,9 @@ public class RulerCanvasController : MonoBehaviour
 
         notesCanvas.SetActive(false);
         notesActive = false;
+
+        tableCanvas.SetActive(false);
+        tableActive = false;
     }
 
     private void Update()
@@ -26,6 +33,10 @@ public class RulerCanvasController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             swapNotesState();
+        }
+        else if (Input.GetKeyDown(KeyCode.T))
+        {
+            swapTableState();
         }
     }
 
@@ -59,6 +70,21 @@ public class RulerCanvasController : MonoBehaviour
             BuildState.Instance.setNotesCanvasOpen(false);
         }
     }
+    public void swapTableState()
+    {
+        if (tableActive == false)
+        {
+            tableCanvas.SetActive(true);
+            tableActive = true;
+            BuildState.Instance.setTableCanvasOpen(true);
+        }
+        else
+        {
+            tableCanvas.SetActive(false);
+            tableActive = false;
+            BuildState.Instance.setTableCanvasOpen(false);
+        }
+    }
 
     public bool getRulerActive()
     {
@@ -67,5 +93,9 @@ public class RulerCanvasController : MonoBehaviour
     public bool getNotesActive()
     {
         return notesActive;
+    }
+    public bool getTableActive()
+    {
+        return tableActive;
     }
 }

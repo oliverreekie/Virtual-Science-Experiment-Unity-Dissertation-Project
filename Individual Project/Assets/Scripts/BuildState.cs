@@ -23,6 +23,8 @@ public class BuildState : MonoBehaviour
 
     private bool notesCanvasOpen = false;
 
+    private bool tableCanvasOpen = false;
+
     public TextMeshProUGUI currentGoalLabel;
 
     private void Awake()
@@ -94,6 +96,16 @@ public class BuildState : MonoBehaviour
     }
 
     public bool getNotesCanvasOpen()
+    {
+        return notesCanvasOpen;
+    }
+
+    public void setTableCanvasOpen(bool b)
+    {
+        notesCanvasOpen = b;
+    }
+
+    public bool getTableCanvasOpen()
     {
         return notesCanvasOpen;
     }
