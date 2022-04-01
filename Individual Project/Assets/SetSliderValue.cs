@@ -8,6 +8,10 @@ public class SetSliderValue : MonoBehaviour
 {
     public TextMeshProUGUI theText;
 
+    void Start()
+    {
+    }
+
     void Update()
     {
         theText.text = this.gameObject.GetComponent<Slider>().value.ToString();

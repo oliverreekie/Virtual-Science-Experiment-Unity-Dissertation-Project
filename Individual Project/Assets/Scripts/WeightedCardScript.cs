@@ -6,7 +6,7 @@ public class WeightedCardScript : MonoBehaviour
 {
     void Update()
     {
-        if (Input.GetKeyDown("1"))
+        /*if (Input.GetKeyDown("1"))
         {
             this.transform.position = new Vector3((float)-5.196, (float)2.9591, (float)5.538);
             this.transform.rotation = new Quaternion(-90, -90, 0, 0);
@@ -30,7 +30,7 @@ public class WeightedCardScript : MonoBehaviour
         {
             this.transform.position = new Vector3((float)-5.196, (float)3.7547, (float)5.538);
             this.transform.rotation = new Quaternion(-90, -90, 0, 0);
-        }
+        }*/
 
     }
 }
