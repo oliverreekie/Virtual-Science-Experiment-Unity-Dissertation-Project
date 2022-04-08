@@ -16,20 +16,17 @@ public class ArrowScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public void OnPointerDown(PointerEventData eventData)
     {
         isHolding = true;
-        print("Hold");
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
         isHolding = false;
-        print("Release");
     }
 
     private void Update()
     {
         if(isHolding == true){
             arrowLocation = Math.Round((this.transform.position.x - 629.3) / 25.582);
-            print(arrowLocation);
             distanceText.text = (arrowLocation.ToString() + "cm");
             if(this.transform.position.x <= 629.3)
             {

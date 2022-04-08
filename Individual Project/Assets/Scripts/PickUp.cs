@@ -8,7 +8,7 @@ public class PickUp : MonoBehaviour
 
     public GameObject toInstantiate;
 
-    public CanvasController rulerController;
+    public CanvasController canvasController;
 
     private void OnMouseDown()
     {
@@ -18,7 +18,7 @@ public class PickUp : MonoBehaviour
 
         if(dist <= 3)
         {
-            if(GetComponent<Rigidbody>().name != "ClampStand_LGOFF" && GetComponent<Rigidbody>().name != "Ruler, Clamp, LGOFF" && GetComponent<Rigidbody>().name != "Ruler, Clamp, LGOFF, Timer" && GetComponent<Rigidbody>().name != "Ruler, Clamp, LGON, Timer, Wires")
+            if(GetComponent<Rigidbody>().name != "ClampStand_LGOFF" && GetComponent<Rigidbody>().name != "Ruler, Clamp, LGOFF" && GetComponent<Rigidbody>().name != "Ruler, Clamp, LGOFF, Timer" && GetComponent<Rigidbody>().name != "Ruler, Clamp, LGON, Timer, Wires" && GetComponent<Rigidbody>().name != "Clipboard")
             {
                 GetComponent<Rigidbody>().useGravity = false;
                 this.transform.position = toHoldPoint.position;
@@ -26,6 +26,11 @@ public class PickUp : MonoBehaviour
 
                 HoldPointScript.Instance.setIsHolding(true);
                 HoldPointScript.Instance.setObjHolding(GetComponent<Rigidbody>().name);
+            }
+            else if (HoldPointScript.Instance.getLookingAt() == "Clipboard")
+            {
+                canvasController.swapTableState();
+                print("Hit");
             }
         }
     }
@@ -79,7 +84,7 @@ public class PickUp : MonoBehaviour
         }
         else if (HoldPointScript.Instance.getLookingAt() == "Ruler, Clamp, LGON, Timer, Wires" && HoldPointScript.Instance.getObHolding() == "Weighted Card")
         {
-            rulerController.swapRulerState();
+            canvasController.swapRulerState();
         }
         else
         {

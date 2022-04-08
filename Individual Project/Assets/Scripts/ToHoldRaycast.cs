@@ -42,11 +42,17 @@ public class ToHoldRaycast : MonoBehaviour
                     }
                     
                 }
-                else if (hit.collider.name != "BuildObjCheck" && hit.collider.name != "Ruler, Clamp, LGON, Timer, Wires")
+                else if (hit.collider.name == "Clipboard")
+                {
+                    uiText.text = "Open Table";
+                    HoldPointScript.Instance.setLookingAt("Clipboard");
+                }
+            else if (hit.collider.name != "BuildObjCheck" && hit.collider.name != "Ruler, Clamp, LGON, Timer, Wires")
                 {
                     uiText.text = ("Pick up");
                     HoldPointScript.Instance.setLookingAt("Object");
                 }
+
 
             }
             else

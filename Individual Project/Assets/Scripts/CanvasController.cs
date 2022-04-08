@@ -16,6 +16,10 @@ public class CanvasController : MonoBehaviour
 
     private bool tableActive;
 
+    public GameObject graphCanvas;
+
+    private bool graphActive;
+
     void Start()
     {
         rulerCanvas.SetActive(false);
@@ -26,6 +30,9 @@ public class CanvasController : MonoBehaviour
 
         tableCanvas.SetActive(false);
         tableActive = false;
+
+        graphCanvas.SetActive(false);
+        graphActive = false;
     }
 
     private void Update()
@@ -34,9 +41,25 @@ public class CanvasController : MonoBehaviour
         {
             swapNotesState();
         }
-        else if (Input.GetKeyDown(KeyCode.T))
+        else if (Input.GetKeyDown(KeyCode.G))
         {
-            swapTableState();
+            swapGraphState();
+        }
+    }
+
+    public void swapGraphState()
+    {
+        if(graphActive == false)
+        {
+            graphCanvas.SetActive(true);
+            graphActive = true;
+            BuildState.Instance.setGraphCanvasOpen(true);
+        }
+        else
+        {
+            graphCanvas.SetActive(false);
+            graphActive = false;
+            BuildState.Instance.setGraphCanvasOpen(false);
         }
     }
 
@@ -97,5 +120,9 @@ public class CanvasController : MonoBehaviour
     public bool getTableActive()
     {
         return tableActive;
+    }
+    public bool getGraphActive()
+    {
+        return graphActive;
     }
 }

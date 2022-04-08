@@ -25,6 +25,8 @@ public class BuildState : MonoBehaviour
 
     private bool tableCanvasOpen = false;
 
+    private bool graphCanvasOpen = false;
+
     public TextMeshProUGUI currentGoalLabel;
 
     private void Awake()
@@ -108,5 +110,15 @@ public class BuildState : MonoBehaviour
     public bool getTableCanvasOpen()
     {
         return notesCanvasOpen;
+    }
+
+    public void setGraphCanvasOpen(bool b)
+    {
+        graphCanvasOpen = b;
+    }
+
+    public bool getGraphCanvasOpen()
+    {
+        return graphCanvasOpen;
     }
 }
